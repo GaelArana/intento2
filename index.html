@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index/menu.css">
+    <title>LECABR</title>
+</head>
+
+<body>
+    <div class="contenedor">
+        <button class="arrow arrow-left" onclick="cambiarJuego(-1)">&#8249;</button>
+        <button class="arrow arrow-right"  onclick="cambiarJuego(1)">&#8250;</button>
+        <h1 class="titulo">Bienvenido al Centro de Videojuegos LECABR</h1>
+        <h3 class="titulo2">Elige un videojego</h3>
+        <div class="contenedor-juegos">
+            <img align="center" id="imagenJuego" src="" alt="Imagen del Juego">
+            <div>
+                <button onclick="jugarJuego()" id="nombreJuego">Nombre del Juego</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="index/menu.js"></script>
+</html>

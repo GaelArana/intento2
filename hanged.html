@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Juego del ahorcado</title>
+  <link rel="stylesheet" type="text/css" href="ahorcado/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Juego del ahorcado</h1>
+
+    <div class="game-container">
+
+      <div class="start-section">
+        <div class="input-container">
+          <label for="wordInput">Ingresa una palabra:</label>
+          <input type="text" id="wordInput" maxlength="15">
+          <div id="wordWarning" class="warning"></div> 
+        </div>
+        <div class="input-container">
+          <label for="hint">Pista o definición:</label>
+          <input type="text" id="hint">
+          <div id="hintWarning" class="warning"></div>
+        </div>
+        <div class="button-container"> 
+          <button class="start-button" onclick="startGame()">Iniciar Juego</button>
+          <button class="start-button rules-button" onclick="goToRules()">Reglas</button>
+          <button class="start-button" onclick="goToHistory()">Historia</button>
+        </div>
+      </div>
+
+      <div class="game-section" style="display:none;">
+        <div class="hangman-container">
+          <div class="rope"></div> 
+          <div class="hangman">
+            <div class="head"></div>
+            <div class="torso"></div>
+            <div class="left-arm"></div>
+            <div class="right-arm"></div>
+            <div class="left-leg"></div>
+            <div class="right-leg"></div>
+          </div>
+        </div>
+        <div class="word-section">
+          <div id="wordDisplay"></div>
+          <div id="hintDisplay"></div>
+        </div>
+        <div class="attempts-section">
+          <label for="letterInput">Ingresa una letra:</label>
+          <input type="text" id="letterInput" maxlength="1">
+          <button onclick="checkLetter()">Continuar</button>
+          <div id="letterWarning" class="warning"></div>
+        </div>
+        <div class="game-state-section" id="gameState"></div>
+        <button onclick="goToStart()">Volver a jugar</button>
+        
+      </div>
+
+    </div> 
+    <div class="menu">
+      <button onclick="location.href='index.html'" id="buttonMenu">Menú inicial</button>
+    </div>
+  </div>
+  <script src="ahorcado/script.js"></script>
+</body>
+</html>

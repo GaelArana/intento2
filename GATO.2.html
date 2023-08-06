@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G A T I T O</title>
+    <style>
+        body {
+            background-image: url("multimedia/background1.jpeg");
+            background-size: 1500px;
+            font-family: Arial, sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .contenedor-juego {
+            height: 600px;
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #f9f9f9;
+            border: 5px solid #ff6700;
+            border-radius: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+        }
+
+        .juego-titulo {
+            font-size: 36px;
+            font-weight: bold;
+            color: #ff6700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .juego-info {
+            font-size: 20px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .juego-cuadricula {
+            display: grid;
+            grid-template-columns: repeat(3, 100px);
+            gap: 10px;
+        }
+
+        .cuadro {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #ff6700;
+            text-align: center;
+            color: #ff6700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #333;
+            font-size: 40px;
+            transition: background-color 0.2s, color 0.2s;
+            cursor: pointer;
+        }
+
+        .cuadro:hover {
+            background-color: #ff6700;
+            color: #fff;
+        }
+
+        .juego-boton {
+            padding: 10px 20px;
+            background: #ffffff;
+            color: #fff;
+            cursor: pointer;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .juego-boton:hover {
+            background-color: #cc5500;
+        }
+
+        .ganador {
+            animation: winnerAnimation 1s linear infinite;
+            background-color: #f3d200;
+        }
+
+        .marcador {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 20px;
+            color: #666;
+        }
+        
+        @keyframes winnerAnimation {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .rondas {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        z-index: 1;
+        }
+
+        .contenedor-rondas {
+        background-color: #fff;
+        justify-content: center;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        #cantidadRondas{
+            text-align: center;
+            margin-top: 10px;
+            margin-left: 140px;
+        }
+
+        #botonRondas{
+            margin-top: 10px;
+            margin-left: 148px;
+        }
+
+        .menu{
+            display: flex;
+            justify-content: center;
+        }
+
+        #buttonMenu{
+            width: 95px;
+            height: 40px;
+            border-radius: 20%;
+        }
+
+        button{
+            margin-top: 10px;
+        }
+
+        button:hover{
+            background-color: rgb(110, 110, 110);
+            color: rgb(255, 255, 255);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="rondas" id="rondas">
+        <div class="contenedor-rondas">
+            <h2>Ingresa la cantidad de rondas:</h2>
+            <input type="number" id="cantidadRondas" min="1" max="5" value="1">
+            <div>
+                <button onclick="entrar()" id="botonRondas">Iniciar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="contenedor-juego">
+        <div class="juego-titulo">
+            G A T I T O
+        </div>
+        <p id="juego-info" class="juego-info"></p>
+        <div class="juego-cuadricula">
+            <div class="cuadro"></div>
+            <div class="cuadro"></div>
+            <div class="cuadro"></div>
+            <div class="cuadro"></div>
+            <div class="cuadro"></div>
+            <div class="cuadro"></div>
+            <div class="cuadro"></div>
+            <div class="cuadro"></div>
+            <div class="cuadro"></div>
+        </div>
+        <button id="juego-boton">Volver a jugar</button>
+        <p class="marcador" id="marcador-info">❌ 0 - 0 ⭕️</p>
+        <button id="juego-boton-reiniciar">Reiniciar juego</button>
+    </div>
+    <div class="menu">
+        <button onclick="location.href='index.html'" id="buttonMenu">Menú inicial</button>
+    </div>
+    <script>
+        const rondas = document.getElementById("rondas");
+
+        const cuadro_btn = document.querySelectorAll(".cuadro");
+        const info = document.getElementById("juego-info");
+        const juego_btn = document.getElementById("juego-boton");
+        const juego_btn_reiniciar = document.getElementById("juego-boton-reiniciar");
+        var i = 1;
+        const jBtn_e = "pointer-events:initial;opacity:initial;",
+            jBtn_d = "pointer-events:none;opacity:40%;";
+        let state = false;
+        let puntajeX = 0;
+        let puntajeO = 0;
+
+        var pWin = [
+            [0, 1, 2],
+            [3, 4, 5],
+            [6, 7, 8],
+            [0, 3, 6],
+            [1, 4, 7],
+            [2, 5, 8],
+            [0, 4, 8],
+            [2, 4, 6]
+        ];
+
+        function entrar() {            
+            rondas.style.display = "none";
+        }
+
+        function comprobar() {
+            juego_btn.style.cssText = jBtn_d;
+            for (var j = 0; j < pWin.length; j++) {
+                if (cuadro_btn[pWin[j][0]].innerHTML === "❌" && cuadro_btn[pWin[j][1]].innerHTML === "❌" && cuadro_btn[pWin[j][2]].innerHTML === "❌") {
+                    info.innerHTML = '"❌" Gana';
+                    puntajeX++;
+                    state = true;
+                    cuadro_btn[pWin[j][0]].classList.add("ganador");
+                    cuadro_btn[pWin[j][1]].classList.add("ganador");
+                    cuadro_btn[pWin[j][2]].classList.add("ganador");
+                    deshabilitarCasillas();
+                    reiniciarJuego();
+                } else if (cuadro_btn[pWin[j][0]].innerHTML === "⭕️" && cuadro_btn[pWin[j][1]].innerHTML === "⭕️" && cuadro_btn[pWin[j][2]].innerHTML === "⭕️") {
+                    info.innerHTML = '"⭕️" Gana';
+                    puntajeO++;
+                    state = true;
+                    cuadro_btn[pWin[j][0]].classList.add("ganador");
+                    cuadro_btn[pWin[j][1]].classList.add("ganador");
+                    cuadro_btn[pWin[j][2]].classList.add("ganador");
+                    deshabilitarCasillas();
+                    reiniciarJuego();
+                }
+            }
+            if (cuadro_btn[0].innerHTML !== "" && cuadro_btn[1].innerHTML !== "" && cuadro_btn[2].innerHTML !== "" && cuadro_btn[3].innerHTML !== "" && cuadro_btn[4].innerHTML !== "" && cuadro_btn[5].innerHTML !== "" && cuadro_btn[6].innerHTML !== "" && cuadro_btn[7].innerHTML !== "" && cuadro_btn[8].innerHTML !== "" && state == false) {
+                info.innerHTML = "Empate";
+                deshabilitarCasillas(false);
+                reiniciarJuego();
+            }
+            actualizarMarcador();
+        }
+
+        function deshabilitarCasillas(y) {
+            (y == false) ? i = Math.floor(Math.random() * (3 - 1)) + 1 : 0;
+            for (var n_boton = 0; n_boton < cuadro_btn.length; n_boton++) {
+                cuadro_btn[n_boton].style.setProperty("pointer-events", "none");
+            }
+            juego_btn.style.cssText = jBtn_e;
+        }
+
+        function nEmpieza() {
+            var cantidadRondas = parseInt(document.getElementById("cantidadRondas").value, 10)
+            var limiteRondas = cantidadRondas;
+            juego_btn.style.cssText = jBtn_d;
+            let c1;
+            (i % 2 == 0) ? c1 = "❌" : c1 = "⭕️";
+            info.innerHTML = `Presione cualquier cuadro para iniciar: <b>"${c1}"</b> empieza.`;
+            if (puntajeX >= limiteRondas || puntajeO >= limiteRondas) {
+                if (puntajeX > puntajeO) {
+                    info.innerHTML = `¡"❌" Gana la partida!`;
+                } else if (puntajeO > puntajeX) {
+                    info.innerHTML = `¡"⭕️" Gana la partida!`;
+                } else {
+                    info.innerHTML = "¡Empate en la partida!";
+                }
+                deshabilitarCasillas(false);
+                juego_btn.style.cssText = jBtn_d;
+            }
+        }
+
+        function reiniciarJuego() {
+            setTimeout(function () {
+                for (var n_boton = 0; n_boton < cuadro_btn.length; n_boton++) {
+                    cuadro_btn[n_boton].style.cssText = "pointer-events:initial;";
+                    cuadro_btn[n_boton].innerHTML = "";
+                    cuadro_btn[n_boton].classList.remove("ganador");
+                    state = false;
+                }
+                nEmpieza();
+            }, 1000);
+        }
+
+        
+        function reiniciarJuegoCompleto() {
+            document.getElementById("cantidadRondas").value = "1"
+            rondas.style.display = "flex"
+            puntajeX = 0;
+            puntajeO = 0;
+            actualizarMarcador();
+            reiniciarJuego();
+        }
+
+        
+        function actualizarMarcador() {
+            document.getElementById("marcador-info").innerText = `❌ ${puntajeX} - ${puntajeO} ⭕️`;
+        }
+
+        
+        juego_btn_reiniciar.onclick = reiniciarJuegoCompleto;
+
+        
+        actualizarMarcador();
+
+       
+        cuadro_btn.forEach(boton => {
+            boton.onclick = function () {
+                info.innerHTML = "";
+                (i % 2 == 0) ? boton.innerHTML = "❌" : boton.innerHTML = "⭕️";
+                comprobar();
+                boton.style.setProperty("pointer-events", "none");
+                i++;
+                (i == 3) ? i = 1 : 0;
+            }
+        });
+
+        juego_btn.onclick = function () {
+            for (var n_boton = 0; n_boton < cuadro_btn.length; n_boton++) {
+                cuadro_btn[n_boton].style.cssText = "pointer-events:initial;";
+                cuadro_btn[n_boton].innerHTML = "";
+                cuadro_btn[n_boton].classList.remove("ganador");
+                state = false;
+            }
+            nEmpieza();
+        }
+
+        nEmpieza()
+    </script>
+</body>
+
+</html>

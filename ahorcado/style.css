@@ -1,0 +1,234 @@
+body {
+  font-family: Arial, sans-serif;
+  background: rgb(63,94,251);
+  background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(229,73,124,1) 100%, rgba(252,70,107,1) 100%);
+  align-items: center;
+  box-shadow: 0 2 5px rgba(0, 0, 0, 0.2);
+}
+
+
+h1 {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.907);
+}
+
+label {
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+}
+
+
+button {
+  margin-top: 10px;
+  padding: 5px;
+  font-size: 12px;
+  background-color: #e5497c;
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+
+}
+
+button:hover {
+  background-color: #e13255
+}
+
+button:active {
+  background-color: #e13255;
+}
+
+.container {
+  font-family: Arial, sans-serif;
+  margin: 150px;
+  margin-top: 250px;
+  margin-right: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background:rgb(255, 255, 255, 0.2);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  padding: 5px;
+  border-radius: 5px;
+  border: none
+}
+
+.link-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.rules-button {
+  margin-top: 10px;
+  padding: 5px;
+  font-size: 12px;
+  background-color: #e5497c;
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.rules-button:hover {
+  background-color: #e13255;
+}
+
+.start-section {
+  margin: 10px;
+  border: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#wordDisplay {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center; 
+}
+
+#remainingAttempts {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#gameState {
+  font-size: 18px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+}
+
+.rope {
+  width: 40px;
+  height: 2px;
+  background-color: #000;
+  position: absolute;
+  top: 0px; 
+  left: 0;
+  right: 0;
+  margin: auto; 
+}
+
+.hangman-container {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center; 
+  align-items: flex-end;
+  position: relative; 
+}
+
+
+.hangman {
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.hangman::before {
+  content: '';
+  display: block;
+  width: 2px;
+  height: 100px;
+  background-color: #000;
+  margin-right: 20px;
+}
+
+.hangman::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 2px;
+  background-color: #000;
+  margin-left: 20px;
+}
+
+.hangman div {
+  display: none;
+  position: absolute;
+}
+
+.head {
+  width: 30px;
+  height: 30px;
+  background-color: #000;
+  border-radius: 50%;
+  top: 0px; 
+  left: calc(50% - 0px); 
+}
+
+.torso {
+  width: 2px;
+  height: 50px;
+  background-color: #000;
+  top: 20px;
+  left: calc(70% - 1px); 
+}
+
+.left-arm,
+.right-arm {
+  width: 19px;
+  height: 2px;
+  background-color: #000;
+  top: 10px; 
+  position: absolute;
+}
+
+.left-arm {
+  transform-origin: top;
+  transform: rotate(45deg);
+  left: 40px; 
+  top: 35px;
+}
+
+.right-arm {
+  transform-origin: top;
+  transform: rotate(-45deg);
+  right: 8px; 
+  top: 35px;
+}
+
+.left-leg,
+.right-leg {
+  width: 20px;
+  height: 2px;
+  background-color: #000;
+  top: 68px; 
+  position: absolute;
+}
+
+.left-leg {
+  transform-origin: bottom right;
+  transform: rotate(-45deg);
+  left: 35px; 
+}
+
+.right-leg {
+  transform-origin: bottom left;
+  transform: rotate(45deg);
+  right: 3px; 
+}
+
+.menu{
+  display: flex;
+  justify-content: center;
+}
+
+#buttonMenu{
+  width: 95px;
+  height: 40px;
+  border-radius: 20%;
+}

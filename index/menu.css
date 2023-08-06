@@ -1,0 +1,150 @@
+body {
+    background-image: url("multimedia/background1.jpeg");
+    background-size: 1500px;
+    font-family: Arial, sans-serif;
+  }
+
+  .contenedor {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px;
+    width: 400px; 
+    height: 600px;
+  }
+  
+  .contenedor-juegos {
+    text-align: center;
+    transition: transform 0.5s;
+  }
+
+  h1{
+    margin-bottom: 10px;
+    text-align: center;
+    text-decoration: overline;
+    justify-content: center;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+  @keyframes cambiarColor {
+    10% {
+      color: rgb(196, 1, 1);
+    }
+    25% {
+      color: rgb(202, 1, 175);
+    }
+    50% {
+      color: blue;
+    }
+    75% {
+      color: rgb(1, 194, 113);
+    }
+    90% {
+      color: green;
+    }
+    100% {
+      color: rgb(121, 39, 2);
+    }
+  }
+  
+  .titulo {
+    animation: cambiarColor 10s infinite;
+  }
+
+  h3{
+    margin-bottom: 5px;
+    text-shadow: 0 0 10px #ffffff;
+    font-family: 'Times New Roman', Times, serif;
+  }
+  
+
+  @keyframes glow {
+    0% {
+      color: #ffffff;
+      text-shadow: 0 0 10px #ffffff;
+    }
+    50% {
+      color: #7c117c80;
+      text-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff; /* Magenta */
+    }
+    100% {
+      color: #ffffff;
+      text-shadow: 0 0 10px #ffffff;
+    }
+  }
+  
+  @keyframes outline {
+    0% {
+      text-shadow: 0 0 10px #ffffff;
+    }
+    50% {
+      text-shadow: 0 0 10px #ff00ff;
+    }
+    100% {
+      text-shadow: 0 0 10px #00ff00;
+    }
+  }
+  
+  .titulo2 {
+    animation: glow 10s infinite alternate, outline 2s infinite alternate;
+  }
+
+  img {
+    width: 200px;
+    height: 200px;
+    margin-top: 50px;
+    border-radius: 10%;
+  }
+
+  #nombreJuego{
+    background-color: rgb(73, 73, 73);
+    color: rgb(255, 255, 255);
+    align-items: center;
+    height: 80px;
+    width: 200px;
+    border-radius: 20%;
+    font-family: cursive;
+    font-size: 24px;
+  }
+
+  #nombreJuego:hover{
+    background-color: rgb(155, 149, 149);
+    color: rgb(139, 0, 0);
+  }
+  
+  .arrow {
+    background-color: rgb(73, 73, 73);
+    color: rgb(255, 255, 255);
+    font-size: 24px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    cursor: pointer;
+  }
+
+  .arrow:hover{
+    background-color: rgb(73, 73, 73);
+    color: rgb(199, 1, 1);
+  }
+  
+  .arrow-left {
+    position: relative;
+    top: 350px;
+    right: 160px;
+  }
+  
+  .arrow-right {
+    position: relative;
+    top: 320px;
+    left: 160px;
+  }
+
+  .contenedor-juegos.fade-out {
+    opacity: 0;
+    transform: scale(2);
+  }
+  
+  .contenedor-juegos.fade-in {
+    opacity: 1;
+    transform: scale(0.5);
+  }
